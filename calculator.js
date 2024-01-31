@@ -75,17 +75,42 @@ function calculatePrice() {
                                          epdmBaseTotal + epdmSealTotal + endCapTotal +
                                          alumLProfileTotal + flashingAlumZTotal;
 
+ // Assuming 'type' is either 'heatCut' or 'shade'
+    const typeText = type === 'heatCut' ? 'Heat Cut' : 'Shade';
+	
+ // Dimension of Shinkolite sheet
+	let dimensionText ;
+	if (userLength <= 3000) {
+        dimensionText = "3 m";
+    } else if (userLength <= 4000) {
+        dimensionText = "4 m";
+    } else if (userLength <= 5000) {
+         dimensionText = "5 m";;
+    } else if (userLength <= 6000) {
+         dimensionText = "6 m";;
+    } else {
+		null
+	};
+
     // Display the result
-    let resultText = `Total sheets required: ${sheetsAcrossWidth}\nTotal price for Shinkolite: Rp${totalPrice.toLocaleString()}\n\n\n`;
-    resultText += `Accessories:\n`;
-    resultText += `Aluminium Frame (${alumFrameQty} pcs): Rp${alumFrameTotal.toLocaleString()}\n`;
-    resultText += `Cover Aluminium (${coverAlumQty} pcs): Rp${coverAlumTotal.toLocaleString()}\n`;
-    resultText += `EPDM Rubber Base (${epdmBaseQty} pcs): Rp${epdmBaseTotal.toLocaleString()}\n`;
-    resultText += `EPDM Rubber Seal (${epdmSealQty} pcs): Rp${epdmSealTotal.toLocaleString()}\n`;
-    resultText += `End Cap (${endCapQty} pcs): Rp${endCapTotal.toLocaleString()}\n`;
-    resultText += `Aluminium L Profile (${alumLProfileQty} pcs): Rp${alumLProfileTotal.toLocaleString()}\n`;
-    resultText += `Flashing Aluminium Z (${flashingAlumZQty} pcs): Rp${flashingAlumZTotal.toLocaleString()}\n\n`;
-    resultText += `Total price including all accessories: Rp${totalPriceWithAllAccessories.toLocaleString()}`;
+let resultTable = `<table class="result-table">
+                      <tr><th>Item</th><th>Quantity</th><th>Price</th></tr>
+                      <tr><td>${typeText} ${dimensionText} </td><td>${sheetsAcrossWidth}</td><td>Rp${totalPrice.toLocaleString()}</td></tr>`;
+
+resultTable += `<tr><td>Aluminium Frame</td><td>${alumFrameQty} pcs</td><td>Rp${alumFrameTotal.toLocaleString()}</td></tr>`;
+resultTable += `<tr><td>Cover Aluminium</td><td>${coverAlumQty} pcs</td><td>Rp${coverAlumTotal.toLocaleString()}</td></tr>`;
+resultTable += `<tr><td>EPDM Rubber Base</td><td>${epdmBaseQty} pcs</td><td>Rp${epdmBaseTotal.toLocaleString()}</td></tr>`;
+resultTable += `<tr><td>EPDM Rubber Seal</td><td>${epdmSealQty} pcs</td><td>Rp${epdmSealTotal.toLocaleString()}</td></tr>`;
+resultTable += `<tr><td>End Cap</td><td>${endCapQty} pcs</td><td>Rp${endCapTotal.toLocaleString()}</td></tr>`;
+resultTable += `<tr><td>Aluminium L Profile</td><td>${alumLProfileQty} pcs</td><td>Rp${alumLProfileTotal.toLocaleString()}</td></tr>`;
+resultTable += `<tr><td>Flashing Aluminium Z</td><td>${flashingAlumZQty} pcs</td><td>Rp${flashingAlumZTotal.toLocaleString()}</td></tr>`;
+
+resultTable += `<tr><td colspan="2"><strong>Total price including all accessories</strong></td><td><strong>Rp${totalPriceWithAllAccessories.toLocaleString()}</strong></td></tr>`;
+resultTable += `</table>`;
+
+// Set the innerHTML of the result div to the result table
+document.getElementById('result').innerHTML = resultTable;
+
 
     document.getElementById('result').innerHTML = resultText;
 }
