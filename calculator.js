@@ -91,11 +91,18 @@ function calculatePrice() {
     } else {
 		null
 	};
+	
+
+    // Calculate the tax (11% of the total price)
+    const taxAmount = totalPriceWithAllAccessories * 0.11;
+	
+	// Calculate the final total price including tax
+    const finalTotalPrice = totalPriceWithAllAccessories + taxAmount;
 
     // Display the result
 let resultTable = `<table class="result-table">
                       <tr><th>Item</th><th>Quantity</th><th>Price</th></tr>
-                      <tr><td>${typeText} ${dimensionText} </td><td>${sheetsAcrossWidth}</td><td>Rp${totalPrice.toLocaleString()}</td></tr>`;
+                      <tr><td>${typeText} ${dimensionText} </td><td>${sheetsAcrossWidth} Sheets</td><td>Rp${totalPrice.toLocaleString()}</td></tr>`;
 
 resultTable += `<tr><td>Aluminium Frame</td><td>${alumFrameQty} pcs</td><td>Rp${alumFrameTotal.toLocaleString()}</td></tr>`;
 resultTable += `<tr><td>Cover Aluminium</td><td>${coverAlumQty} pcs</td><td>Rp${coverAlumTotal.toLocaleString()}</td></tr>`;
@@ -104,7 +111,6 @@ resultTable += `<tr><td>EPDM Rubber Seal</td><td>${epdmSealQty} pcs</td><td>Rp${
 resultTable += `<tr><td>End Cap</td><td>${endCapQty} pcs</td><td>Rp${endCapTotal.toLocaleString()}</td></tr>`;
 resultTable += `<tr><td>Aluminium L Profile</td><td>${alumLProfileQty} pcs</td><td>Rp${alumLProfileTotal.toLocaleString()}</td></tr>`;
 resultTable += `<tr><td>Flashing Aluminium Z</td><td>${flashingAlumZQty} pcs</td><td>Rp${flashingAlumZTotal.toLocaleString()}</td></tr>`;
-
 resultTable += `<tr><td colspan="2"><strong>Total price including all accessories</strong></td><td><strong>Rp${totalPriceWithAllAccessories.toLocaleString()}</strong></td></tr>`;
 resultTable += `</table>`;
 
