@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shinkolite Price Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>Shinkolite Price Calculator</h1>
+        
+        <label for="type">Type:</label>
+        <select id="type">
+            <option value="heatCut">Heat Cut</option>
+            <option value="shade">Shade</option>
+        </select>
+        
+        <label for="length">Length (mm):</label>
+        <input type="number" id="length">
+        
+        <label for="width">Width (mm):</label>
+        <input type="number" id="width">
+        
+        <button onclick="calculatePrice()">Calculate</button>
+        <div id="result"></div>
+	<div>
+	<h6>
+	Transportation cost not inculeded.
+	</h6>
+	</div
+    </div>
+
+    <script src="calculator.js"></script>
+</body>
+</html>
