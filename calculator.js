@@ -76,7 +76,7 @@ function calculatePrice() {
                                          alumLProfileTotal + flashingAlumZTotal;
 
     // Display the result
-    let resultText = `Total sheets required: ${sheetsAcrossWidth}\nTotal price for Shinkolite: Rp${totalPrice.toLocaleString()}\n\n`;
+    let resultText = `Total sheets required: ${sheetsAcrossWidth}\nTotal price for Shinkolite: Rp${totalPrice.toLocaleString()}\n\n\n`;
     resultText += `Accessories:\n`;
     resultText += `Aluminium Frame (${alumFrameQty} pcs): Rp${alumFrameTotal.toLocaleString()}\n`;
     resultText += `Cover Aluminium (${coverAlumQty} pcs): Rp${coverAlumTotal.toLocaleString()}\n`;
@@ -87,7 +87,7 @@ function calculatePrice() {
     resultText += `Flashing Aluminium Z (${flashingAlumZQty} pcs): Rp${flashingAlumZTotal.toLocaleString()}\n\n`;
     resultText += `Total price including all accessories: Rp${totalPriceWithAllAccessories.toLocaleString()}`;
 
-    document.getElementById('result').innerText = resultText;
+    document.getElementById('result').innerHTML = resultText;
 }
 
 // Ensure to call this function when the Calculate button is clicked.
