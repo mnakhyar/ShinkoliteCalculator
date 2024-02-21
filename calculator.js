@@ -46,6 +46,11 @@ function calculatePrice() {
         document.getElementById('result').innerText = 'Invalid length provided.';
         return;
     }
+	
+	// Determine istallation Price
+	const priceInstall = 975000;
+	const areaInstall = Math.ceil(userLength * userWidth/1000000);
+	const totalInstall = Math.ceil(priceInstall * areaInstall);
 
     // Calculate the number of sheets required for the canopy width
     const sheetsAcrossWidth = Math.ceil(userWidth / sheetWidth);
@@ -54,8 +59,16 @@ function calculatePrice() {
     const totalPrice = sheetsAcrossWidth * pricePerSheet;
 
     // Calculate the quantities and total price for accessories
-    const alumFrameQty = sheetsAcrossWidth + 1;
-    const coverAlumQty = sheetsAcrossWidth + 1;
+	let alumFrameQty, coverAlumQty;
+    if (userLength <= 3000) {
+        // For every two sheets, only one Aluminium Frame and Cover Aluminium Frame are needed
+        alumFrameQty = Math.ceil(sheetsAcrossWidth / 2);
+        coverAlumQty = Math.ceil(sheetsAcrossWidth / 2);
+    } else {
+        // If sheet length is more than 3000mm, each sheet requires its own Aluminium Frame and Cover Aluminium Frame
+        alumFrameQty = sheetsAcrossWidth + 1;
+        coverAlumQty = sheetsAcrossWidth + 1;
+    };
     const epdmBaseQty = Math.ceil((userLength * (sheetsAcrossWidth + 1)) / accessories.epdmBase.length);
     const epdmSealQty = Math.ceil((userLength * (sheetsAcrossWidth + 1) * 2) / accessories.epdmSeal.length);
     const endCapQty = sheetsAcrossWidth + 1;
@@ -94,7 +107,7 @@ function calculatePrice() {
 	
 
     // Calculate the tax (11% of the total price)
-    const taxAmount = totalPriceWithAllAccessories * 0.11;
+    const taxAmount = Math.ceil(totalPriceWithAllAccessories * 0.11);
 	
 	// Calculate the final total price including tax
     const finalTotalPrice = totalPriceWithAllAccessories + taxAmount;
@@ -112,7 +125,18 @@ resultTable += `<tr><td>End Cap</td><td>${endCapQty} pcs</td><td>Rp${endCapTotal
 resultTable += `<tr><td>Aluminium L Profile</td><td>${alumLProfileQty} pcs</td><td>Rp${alumLProfileTotal.toLocaleString()}</td></tr>`;
 resultTable += `<tr><td>Flashing Aluminium Z</td><td>${flashingAlumZQty} pcs</td><td>Rp${flashingAlumZTotal.toLocaleString()}</td></tr>`;
 resultTable += `<tr><td colspan="2"><strong>Total price including all accessories</strong></td><td><strong>Rp${totalPriceWithAllAccessories.toLocaleString()}</strong></td></tr>`;
+resultTable += `<tr><td></td> <td> </td> </tr>`;
+resultTable += `<tr><td colspan="2">Tax 11%</td><td>Rp${taxAmount.toLocaleString()}</td></tr>`;
+resultTable += `<tr><td colspan="2"><strong>Total Material price including tax</strong></td><td><strong>Rp${finalTotalPrice.toLocaleString()}</strong></td></tr>`;
+resultTable += `<tr><td></td> <td> </td> </tr>`;
+resultTable += `<tr><th>Item</th><th>Area</th><th>Price</th></tr>`;
+resultTable += `<tr><td colspan="2">Installation per m<sup>2</sup></td><td>Rp${priceInstall.toLocaleString()}</td></tr>`;
+resultTable += `<tr><td>Installation Price</td><td>${areaInstall.toLocaleString()} m<sup>2</sup></td><td>Rp${totalInstall.toLocaleString()}</td></tr>`;
+
 resultTable += `</table>`;
+
+
+
 
 // Set the innerHTML of the result div to the result table
 document.getElementById('result').innerHTML = resultTable;

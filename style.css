@@ -86,3 +86,36 @@ button:hover {
 
 .result-table tr:hover {
     background-color: #f1f1f1;
+}
+#install{
+	background: #ffffff;
+    padding: 10px;
+    border-radius: 3px;
+    color: #333;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.install-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.install-table th,
+.install-table td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.install-table th {
+    background-color: #f2f2f2;
+}
+
+.install-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.install-table tr:hover {
+    background-color: #f1f1f1;
